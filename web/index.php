@@ -31,5 +31,8 @@ $app->before(function(Request $request) use($app){
 $app->get("/",function() use($app){
     $app['twig']->render("index.html.twig");
 });
+$app->get("/createaccount",function() use($app){
+    $app['twig']->render("createaccount.html.twig");
+});
 $app->run();
 ?>
