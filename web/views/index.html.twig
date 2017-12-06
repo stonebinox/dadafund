@@ -5,16 +5,16 @@
         <br>
         <div class="text-center"><img src="images/dadafund_logo.png" class="img-responsive" alt="DaDaFund" width=150 style="margin:0 auto;"></div>
         <h3 class="text-center">Login</h3>
-        <form>
+        <form method="post" action="login_action">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Enter a valid email ID">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter a valid email ID" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter a valid password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Enter a valid password" required>
             </div>
-            <button type="button" class="btn btn-primary">Login</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="window.location='createaccount';">Create Account</button>
+            <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="window.location='createaccount';">Create Account</button>
         </form>
     </div>
     <div class="container-fluid">
