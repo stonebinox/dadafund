@@ -71,7 +71,7 @@ $app->post("/create_action",function(Request $request) use($app){
         require("../classes/adminMaster.php");
         require("../classes/userMaster.php");
         $user=new userMaster;
-        $response=$user->createAccount($request->get("name"),$request->get("password"),$request->get("rpassword"));
+        $response=$user->createAccount($request->get("name"),$request->get("email"),$request->get("password"),$request->get("rpassword"));
         if($response=="ACCOUNT_CREATED")
         {
             return $app->redirect("/?suc=".$response);
