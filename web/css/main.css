@@ -3,7 +3,7 @@
 	src:url(HelveticaNarrow.ttf);
 }
 body{
-    background:url(.../images/hypnotize.png);
+    background:url(https://dusthq-dadafund.herokuapp.com/images/hypnotize.png);
 }
 h1{
     font-family: Narrow, Arial, Helvetica, sans-serif;
