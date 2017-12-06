@@ -29,10 +29,10 @@ $app->before(function(Request $request) use($app){
     $request->getSession()->start();
 });
 $app->get("/",function() use($app){
-    $app['twig']->render("index.html.twig");
+    return $app['twig']->render("index.html.twig");
 });
 $app->get("/createaccount",function() use($app){
-    $app['twig']->render("createaccount.html.twig");
+    return $app['twig']->render("createaccount.html.twig");
 });
 $app->run();
 ?>
