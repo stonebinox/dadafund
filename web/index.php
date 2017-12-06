@@ -47,7 +47,7 @@ $app->post("/login_action",function(Request $request) use($app){
         }
         else
         {
-            return $app->redirect("/?err="+$response);
+            return $app->redirect("/?err=".$response);
         }
     }
     else
