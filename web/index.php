@@ -48,6 +48,7 @@ $app->post("/login_action",function(Request $request) use($app){
         }
         else
         {
+            return "DONE";
             return $app->redirect("/?err=".$response);
         }
     }
