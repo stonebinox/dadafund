@@ -99,6 +99,7 @@ class userMaster extends adminMaster
     {
         if($this->userValid)
         {
+            echo "here";
             $app=$this->app;
             $userID=$this->user_id;
             $um="SELECT user_password FROM user_master WHERE iduser_master='$userID'";
@@ -121,14 +122,12 @@ class userMaster extends adminMaster
     {
         $userEmail=addslashes(htmlentities($userEmail));
         $userID=$this->getUserIDFromEmail($userEmail);
-        echo $userID.'<br>';
         $app=$this->app;
         if(is_numeric($userID))
         {
             $this->__construct($userID);
             $userPassword=md5($userPassword);
             $storedPassword=$this->getUserPassword();
-            echo $storedPassword.'<br>';
             if($userPassword==$storedPassword)
             {
                 $up="UPDATE user_master SET online_flag='1' WHERE iduser_master='$userID'";
