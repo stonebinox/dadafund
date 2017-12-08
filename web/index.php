@@ -29,6 +29,10 @@ $app->before(function(Request $request) use($app){
     $request->getSession()->start();
 });
 $app->get("/",function() use($app){
+    if($app['session']->get("uid"))
+    {
+        return $app->redirect("/dashboard");
+    }
     return $app['twig']->render("index.html.twig");
 });
 $app->get("/createaccount",function() use($app){
@@ -41,7 +45,7 @@ $app->post("/login_action",function(Request $request) use($app){
         require("../classes/userMaster.php");
         $user=new userMaster;
         $response=$user->authenticateUser($request->get("email"),$request->get("password"));
-        if($response=="USER_AUTHENTICATED")
+        if($response=="AUTHENTICATE_USER")
         {
             return $app->redirect("/dashboard");
         }
