@@ -24,6 +24,7 @@ class userMaster extends adminMaster
     {
         if($this->user_id!=NULL)
         {
+            echo "here";
             $userID=$this->user_id;
             $app=$this->app;
             $um="SELECT admin_master_idadmin_master FROM user_master WHERE stat='1' AND iduser_master='$userID'";
@@ -99,7 +100,6 @@ class userMaster extends adminMaster
     {
         if($this->userValid)
         {
-            echo "here";
             $app=$this->app;
             $userID=$this->user_id;
             $um="SELECT user_password FROM user_master WHERE iduser_master='$userID'";
