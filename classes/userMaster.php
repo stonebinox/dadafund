@@ -31,6 +31,7 @@ class userMaster extends adminMaster
             if(($um!="")&&($um!=NULL))
             {
                 $adminID=$um['admin_master_idadmin_master'];
+                echo $adminID;
                 adminMaster::__construct($adminID);
                 if($this->adminValid)
                 {
@@ -114,7 +115,7 @@ class userMaster extends adminMaster
         }
         else
         {
-            return "INVALID_USER_ID_HERE";
+            return "INVALID_USER_ID";
         }
     }
     function authenticateUser($userEmail,$userPassword) //to log a user in
