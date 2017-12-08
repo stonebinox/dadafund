@@ -9,8 +9,8 @@ table.
 class adminMaster
 {
     public $app=NULL;
-    public $admin_id=NULL;
-    private $adminValid=false;
+    private $admin_id=NULL;
+    public $adminValid=false;
     function __construct($adminID=NULL)
     {
         $this->app=$GLOBALS['app'];

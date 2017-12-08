@@ -127,7 +127,6 @@ class userMaster extends adminMaster
             $this->__construct($userID);
             $userPassword=md5($userPassword);
             $storedPassword=$this->getUserPassword();
-            echo $storedPassword.' '.$userPassword;
             if($userPassword==$storedPassword)
             {
                 $up="UPDATE user_master SET online_flag='1' WHERE iduser_master='$userID'";
@@ -145,7 +144,7 @@ class userMaster extends adminMaster
             return "INVALID_USER_CREDENTIALS_HERE";
         }
     }
-    function createAccount($userName,$userEmail,$userPassword,$userPassword2) //to create an account
+    function createAccount($userName,$userEmail,$userPassword,$userPassword2,$adminID=1) //to create an account
     {
         $app=$this->app;
         $userName=trim(addslashes(htmlentities($userName)));
@@ -157,18 +156,27 @@ class userMaster extends adminMaster
                 {
                     if($userPassword===$userPassword2)
                     {
-                        $um="SELECT iduser_master FROM user_master WHERE user_email='$userEmail' AND stat!='0'";
-                        $um=$app['db']->fetchAssoc($um);
-                        if(($um=="")||($um==NULL))
+                        $adminID=addslashes(htmlentities($adminID));
+                        adminMaster::__construct($adminID);
+                        if($this->adminValid)
                         {
-                            $hashPassword=md5($userPassword);
-                            $in="INSERT INTO user_master (timestamp,user_name,user_email,user_password) VALUES (NOW(),'$userName','$userEmail','$hashPassword')";
-                            $in=$app['db']->executeQuery($in);
-                            return "ACCOUNT_CREATED";
+                            $um="SELECT iduser_master FROM user_master WHERE user_email='$userEmail' AND stat!='0'";
+                            $um=$app['db']->fetchAssoc($um);
+                            if(($um=="")||($um==NULL))
+                            {
+                                $hashPassword=md5($userPassword);
+                                $in="INSERT INTO user_master (timestamp,user_name,user_email,user_password) VALUES (NOW(),'$userName','$userEmail','$hashPassword')";
+                                $in=$app['db']->executeQuery($in);
+                                return "ACCOUNT_CREATED";
+                            }
+                            else
+                            {
+                                return "ACCOUNT_ALREADY_EXISTS";
+                            }
                         }
                         else
                         {
-                            return "ACCOUNT_ALREADY_EXISTS";
+                            return "INVALID_ADMIN_TYPE_ID";
                         }
                     }
                     else
