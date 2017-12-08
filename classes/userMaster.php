@@ -127,6 +127,7 @@ class userMaster extends adminMaster
             $this->__construct($userID);
             $userPassword=md5($userPassword);
             $storedPassword=$this->getUserPassword();
+            echo $storedPassword.' '.$userPassword;
             if($userPassword==$storedPassword)
             {
                 $up="UPDATE user_master SET online_flag='1' WHERE iduser_master='$userID'";

@@ -43,6 +43,7 @@ $app->post("/login_action",function(Request $request) use($app){
         $response=$user->authenticateUser($request->get("email"),$request->get("password"));
         if($response=="USER_AUTHENTICATED")
         {
+            return "DONE";
             return $app->redirect("/dashboard");
         }
         else
