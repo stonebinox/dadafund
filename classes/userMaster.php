@@ -127,7 +127,6 @@ class userMaster extends adminMaster
             $this->__construct($userID);
             $userPassword=md5($userPassword);
             $storedPassword=$this->getUserPassword();
-            echo $userPassword.' '.$storedPassword;
             if($userPassword==$storedPassword)
             {
                 $up="UPDATE user_master SET online_flag='1' WHERE iduser_master='$userID'";
@@ -142,7 +141,7 @@ class userMaster extends adminMaster
         }
         else
         {
-            return "INVALID_USER_CREDENTIALS_HERE";
+            return "INVALID_USER_CREDENTIALS";
         }
     }
     function createAccount($userName,$userEmail,$userPassword,$userPassword2,$adminID=1) //to create an account

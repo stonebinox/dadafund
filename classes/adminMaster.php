@@ -26,7 +26,6 @@ class adminMaster
         {
             $app=$this->app;
             $adminID=$this->admin_id;
-            echo $adminID.'<br>';
             $am="SELECT idadmin_master FROM admin_master WHERE stat='1' AND idadmin_master='$adminID'";
             $am=$app['db']->fetchAssoc($am);
             if(($am!="")&&($am!=NULL))
