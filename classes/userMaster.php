@@ -34,7 +34,6 @@ class userMaster extends adminMaster
                 adminMaster::__construct($adminID);
                 if($this->adminValid)
                 {
-                    echo $adminID.'<br>';
                     return true;
                 }
                 else
