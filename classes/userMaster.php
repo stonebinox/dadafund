@@ -31,7 +31,7 @@ class userMaster extends adminMaster
             if(($um!="")&&($um!=NULL))
             {
                 $adminID=$um['admin_master_idadmin_master'];
-                echo $adminID;
+                echo $adminID.'<br>';
                 adminMaster::__construct($adminID);
                 if($this->adminValid)
                 {
