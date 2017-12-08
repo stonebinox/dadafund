@@ -127,6 +127,7 @@ class userMaster extends adminMaster
         {
             $this->__construct($userID);
             $userPassword=md5($userPassword);
+            echo $userPassword.'<br>';
             $storedPassword=$this->getUserPassword();
             if($userPassword==$storedPassword)
             {
