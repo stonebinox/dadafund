@@ -114,7 +114,7 @@ class userMaster extends adminMaster
         }
         else
         {
-            return "INVALID_USER_ID";
+            return "INVALID_USER_ID_HERE";
         }
     }
     function authenticateUser($userEmail,$userPassword) //to log a user in
