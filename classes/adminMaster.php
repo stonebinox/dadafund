@@ -17,7 +17,7 @@ class adminMaster
         if($adminID!=NULL)
         {
             $this->admin_id=addslashes(htmlentities($adminID));
-            $this->adminFlag=$this->verifyAdmin();
+            $this->adminValid=$this->verifyAdmin();
         }
     }
     function verifyAdmin()

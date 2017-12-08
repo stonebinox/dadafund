@@ -41,16 +41,14 @@ $app->post("/login_action",function(Request $request) use($app){
         require("../classes/userMaster.php");
         $user=new userMaster;
         $response=$user->authenticateUser($request->get("email"),$request->get("password"));
-        echo $response;
         if($response=="USER_AUTHENTICATED")
         {
-            // return $app->redirect("/dashboard");
+            return $app->redirect("/dashboard");
         }
         else
         {
-            // return $app->redirect("/?err=".$response);
+            return $app->redirect("/?err=".$response);
         }
-        return "DONE";
     }
     else
     {

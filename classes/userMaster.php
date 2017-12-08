@@ -27,7 +27,6 @@ class userMaster extends adminMaster
             $userID=$this->user_id;
             $app=$this->app;
             $um="SELECT admin_master_idadmin_master FROM user_master WHERE stat='1' AND iduser_master='$userID'";
-            echo $um;
             $um=$app['db']->fetchAssoc($um);
             if(($um!="")&&($um!=NULL))
             {
