@@ -45,7 +45,7 @@ class adminMaster
     function getAdmin()
     {
         if($this->adminValid)
-        
+        {
             $app=$this->app;
             $adminID=$this->admin_id;
             $am="SELECT * FROM admin_master WHERE stat='1' AND idadmin_master='$adminID'";
