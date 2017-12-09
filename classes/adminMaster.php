@@ -42,5 +42,27 @@ class adminMaster
             return false;
         }
     }
+    function getAdmin()
+    {
+        if($this->adminValid)
+        {
+            $adminID=$this->admin_id;
+            $app=$this->app;
+            $am="SELECT * FROM admin_master WHERE stat='1' AND idadmin_master='$adminID'";
+            $am=$app['db']->fetchAssoc($am);
+            if(($am!="")&&($am!=NULL))
+            {
+                return $am;
+            }
+            else
+            {
+                return "INVALID_ADMIN_ID";
+            }
+        }
+        else
+        {
+            return "INVALID_ADMIN_ID";
+        }
+    }
 }
 ?>
