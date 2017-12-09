@@ -48,6 +48,7 @@ app.controller("account",function($scope,$http,$compile){
         $http.get("user/getUser")
         .then(function success(response){
             response=response.data;
+            console.log(response);
             if(typeof response=="object"){
                 $scope.userArray=response;
                 $scope.userName=stripslashes($scope.userArray.user_name);
