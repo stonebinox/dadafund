@@ -38,3 +38,36 @@ function readParams(){
         $("#message").html('<div class="alert alert-success"><strong>Success</strong> '+suc+'</div>');
     }
 }
+var app=angular.module("dadafund",[]);
+app.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+});
+app.controller("account",function($scope,$http,$compile){
+    $scope.userArray=[];
+    $scope.getUser=function(){
+        $http.get("user/getUser")
+        .then(function success(response){
+            response=response.data;
+            if(typeof response=="object"){
+                $scope.userArray=response;
+                $scope.userName=stripslashes($scope.userArray.user_name);
+            }
+            else{
+                response=$.trim(response);
+                switch(response){
+                    case "INVALID_PARAMETERS":
+                    default:
+                    messageBox("Problem","Something went wrong while loading some infotrmation. Please try again later. This is the error we see: "+response);
+                    break;
+                    case "INVALID_USER_ID":
+                    messageBox("Invalid User","You are an invalid user. Please refresh the page and try again.");
+                    break;
+                }
+            }
+        },
+        function error(response){
+            console.log(response);
+            messageBox("Problem","Something went wrong while loading some information. Please try again later.");
+        });
+    };
+});

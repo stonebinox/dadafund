@@ -90,5 +90,25 @@ $app->post("/create_action",function(Request $request) use($app){
         return $app->redirect("/createaccount");
     }
 });
+$app->get("/user/getUser",function() use($app){
+    if($app['session']->get("uid")){
+        require("../classes/adminMaster.php");
+        require("../classes/userMaster.php");
+        $user=new userMaster($app['session']->get("uid"));
+        $response=$user->getUser();
+        if(is_array($response))
+        {
+            return json_encode($response);
+        }
+        else
+        {
+            return $response;
+        }
+    }
+    else
+    {
+        return "INVALID_PARAMETERS";
+    }
+});
 $app->run();
 ?>
