@@ -45,9 +45,9 @@ class adminMaster
     function getAdmin()
     {
         if($this->adminValid)
-        {
-            $adminID=$this->admin_id;
+        
             $app=$this->app;
+            $adminID=$this->admin_id;
             $am="SELECT * FROM admin_master WHERE stat='1' AND idadmin_master='$adminID'";
             $am=$app['db']->fetchAssoc($am);
             if(($am!="")&&($am!=NULL))
