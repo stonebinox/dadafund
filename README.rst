@@ -1,6 +1,6 @@
-Skeleton
+DaDaFund
 ==============
 
-This web app skeleton is for a Silex based app.
+This web app provides an API that rounds up every credit card transaction and donates the difference to partner charities.
 
-Works well when hosted to Heroku. Configured to run with Heroku's ClearDB MySQL add-on.
+Uses ClearDB MySQL, Silex, Stripe, and is hosted on Heroku. 
