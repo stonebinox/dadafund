@@ -124,5 +124,20 @@ $app->get("/logout",function() use($app){
         return "INVALID_PARAMETERS";
     }
 });
+$app->get("/api/transact",function(Request $request) use($app){
+    if(($request->get("amount"))&&($request->get("email")))
+    {
+        require("../classes/adminMaster.php");
+        require("../classes/userMaster.php");
+        require("../classes/transactionMaster.php");
+        $transaction=new transactionMaster;
+        $response=$transaction->addTransaction($email,$amount);
+        return $response;
+    }
+    else
+    {
+        return "INVALID_PARAMETERS";
+    }
+});
 $app->run();
 ?>
