@@ -143,7 +143,7 @@ $app->get("/api/transact",function(Request $request) use($app){
         require("../classes/userMaster.php");
         require("../classes/transactionMaster.php");
         $transaction=new transactionMaster;
-        $response=$transaction->addTransaction($email,$amount);
+        $response=$transaction->addTransaction($request->get("email"),$request->get("amount"));
         return $response;
     }
     else
