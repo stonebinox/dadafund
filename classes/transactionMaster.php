@@ -6,7 +6,7 @@ Last modified: 18-1-18 11:06
 Comments: Main class file for
 transaction_master table.
 -----------------------------------*/
-class transationMaster extends userMaster
+class transactionMaster extends userMaster
 {
     public $app=NULL;
     private $transaction_id=NULL;
