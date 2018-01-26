@@ -71,4 +71,50 @@ app.controller("account",function($scope,$http,$compile){
             messageBox("Problem","Something went wrong while loading some information. Please try again later.");
         });
     };
+    $scope.transactionArray=[];
+    $scope.transactionOffset=0;
+    $scope.getTransactions=function(){
+        $http.get("transaction/getAll?offset="+$scope.transactionOffset)
+        .then(function success(response){
+            response=response.data;
+            if(typeof response=="object"){
+                $scope.transactionArray=response;
+                $scope.displayTransactions();
+            }
+            else{
+                response=$.trim(response);
+                switch(response){
+                    case "INVALID_PARAMETERS":
+                    default:
+                    messageBox("Problem","Something went wrong while loading your past transactions. Please try again later. This is the response we see: "+response);
+                    break;
+                    case "NO_TRANSACTIONS_FOUND":
+                    $("#transactionlist").html('<p class="text-center">No data found.</p>');
+                    break;
+                }
+            }
+        },
+        function error(response){
+            console.log(response);
+            messageBox("Problem","Something went wrong while loading your past transactions. Please try again later.");
+        });
+    };  
+    $scope.displayTransactions=function(){
+        if($scope.transactionArray.length>0){
+            var transactions=$scope.transactionArray;
+            $("#transactionlist").html('<h3 class="text-center">Recent transactions</h3>');
+            var text='<table class="table"><thead><tr><th>Location</th><th>Billed amount</th><th>Donatable amount</th></tr></thead><tbody>';
+            for(var i=0;i<transactions.length;i++){
+                var transaction=transactions[i];
+                var transactionID=transaction.idtransaction_master;
+                var partner=transaction.partner_master_idpartner_master;
+                var partnerName=partner.partner_name;
+                var originalAmount=transaction.original_amount;
+                var donation=transaction.amount_difference;
+                text+='<tr><td>'+partnerName+'</td><td>'+originalAmount+'</td><td><span class="text-success">'+donation+'</span></td></tr>';
+            }
+            text+='</tbody></table>';
+        }
+        $("#transactionlist").append(text);
+    };
 });
