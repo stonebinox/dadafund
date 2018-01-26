@@ -144,7 +144,7 @@ $app->get("/api/transact",function(Request $request) use($app){
         requier("../classes/partnerMaster.php");
         require("../classes/transactionMaster.php");
         $transaction=new transactionMaster;
-        $response=$transaction->addTransaction($request->get("email"),$request->get("amount"));
+        $response=$transaction->addTransaction($request->get("email"),$request->get("amount"),$request->get("partner"));
         return $response;
     }
     else
