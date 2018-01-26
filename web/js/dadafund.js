@@ -77,6 +77,7 @@ app.controller("account",function($scope,$http,$compile){
         $http.get("transaction/getAll?offset="+$scope.transactionOffset)
         .then(function success(response){
             response=response.data;
+            console.log(response);
             if(typeof response=="object"){
                 $scope.transactionArray=response;
                 $scope.displayTransactions();
