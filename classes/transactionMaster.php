@@ -108,7 +108,6 @@ class transactionMaster extends partnerMaster
             $tm=$app['db']->fetchAssoc($tm);
             if(validate($tm))
             {
-                echo "here";
                 $userID=$tm['user_master_iduser_master'];
                 userMaster::__construct($userID);
                 $user=userMaster::getUser();
