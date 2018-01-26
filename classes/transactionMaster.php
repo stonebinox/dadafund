@@ -76,7 +76,7 @@ class transactionMaster extends partnerMaster
                     $app=$this->app;
                     $nextValue=intval($amount+1);
                     $balance=$nextValue-$amount;
-                    $in="INSERT INTO transaction_master (timestamp,user_master_iduser_master,original_amount,amount_difference) VALUES (NOW(),'$userID','$amount','$balance')";
+                    $in="INSERT INTO transaction_master (timestamp,user_master_iduser_master,partner_master_idpartner_master,original_amount,amount_difference) VALUES (NOW(),'$userID','$partnerID','$amount','$balance')";
                     $in=$app['db']->executeQuery($in);
                     $tm="SELECT idtransaction_master FROM transaction_master WHERE stat='1' AND user_master_iduser_master='$userID' ORDER BY idtransaction_master DESC LIMIT 1";
                     $tm=$app['db']->fetchAssoc($tm);
