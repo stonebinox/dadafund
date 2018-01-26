@@ -126,7 +126,7 @@ class transactionMaster extends partnerMaster
             }
             else
             {
-                return "INVALID_TRANSACTION_ID";
+                return "INVALID_TRANSACTION_ID_HERE";
             }
         }
         else
@@ -152,7 +152,6 @@ class transactionMaster extends partnerMaster
                     $transactionID=$transaction['idtransaction_master'];
                     $this->__construct($transactionID);
                     $transData=$this->getTransaction();
-                    echo $transData;
                     if(is_array($transData))
                     {
                         array_push($transArray,$transData);
