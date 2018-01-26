@@ -124,8 +124,18 @@ app.controller("account",function($scope,$http,$compile){
     $scope.getTotal=function(){
         $http.get("transaction/getTotal")
         .then(function success(response){
-            response=response.data;
-            console.log(response);
+            response=$,trim(response.data);
+            switch(response){
+                case "INVALID_PARAMETERS":
+                default:
+                if(!isNaN(response)){
+                    $scope.total=response;
+                }
+                else{
+                    messageBox("Problem","Something went wrong while loading your past transactions. Please try again later. This is the response we see: "+response);
+                }
+                break;
+            }
         },
         function error(response){
             console.log(response);
