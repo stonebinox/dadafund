@@ -137,14 +137,40 @@ $app->get("/logout",function() use($app){
     }
 });
 $app->get("/api/transact",function(Request $request) use($app){
-    if(($request->get("amount"))&&($request->get("email")))
+    if(($request->get("amount"))&&($request->get("email"))&&($request->get("partner")))
     {
         require("../classes/adminMaster.php");
         require("../classes/userMaster.php");
+        requier("../classes/partnerMaster.php");
         require("../classes/transactionMaster.php");
         $transaction=new transactionMaster;
         $response=$transaction->addTransaction($request->get("email"),$request->get("amount"));
         return $response;
+    }
+    else
+    {
+        return "INVALID_PARAMETERS";
+    }
+});
+$app->get("/transaction/getAll",function(Request $request) use($app){
+    if($app['session']->get("uid"))
+    {
+        require("../classes/adminMaster.php");
+        require("../classes/userMaster.php");
+        requier("../classes/partnerMaster.php");
+        require("../classes/transactionMaster.php");
+        $transaction=new transactionMaster;
+        $offset=0;
+        if($request->get("offset"))
+        {
+            $offset=$request->get("offset");
+        }
+        $rows=$transaction->getTransactions($app['session']->get("uid"),$offset);
+        if(is_array($rows))
+        {
+            return json_encode($rows);
+        }
+        return $rows;
     }
     else
     {
