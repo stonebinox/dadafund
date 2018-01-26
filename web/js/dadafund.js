@@ -104,7 +104,7 @@ app.controller("account",function($scope,$http,$compile){
         if($scope.transactionArray.length>0){
             var transactions=$scope.transactionArray;
             $("#transactionlist").html('<h3 class="text-center">Recent transactions</h3>');
-            var text='<table class="table"><thead><tr><th>Location</th><th>Billed amount</th><th>Donatable amount</th></tr></thead><tbody>';
+            var text='<table class="table"><thead><tr><th>Location</th><th>Date</th><th>Billed amount</th><th>Donatable amount</th></tr></thead><tbody>';
             for(var i=0;i<transactions.length;i++){
                 var transaction=transactions[i];
                 var transactionID=transaction.idtransaction_master;
@@ -112,7 +112,10 @@ app.controller("account",function($scope,$http,$compile){
                 var partnerName=partner.partner_name;
                 var originalAmount=transaction.original_amount;
                 var donation=transaction.amount_difference;
-                text+='<tr><td>'+partnerName+'</td><td>'+originalAmount+'</td><td><span class="text-success">'+donation+'</span></td></tr>';
+                var timestamp=transaction.timestamp;
+                var sp=timestamp.split(" ");
+                var format=dateFormat(sp[0])+" at "+sp[1];
+                text+='<tr><td>'+partnerName+'</td><td>'+format+'</td><td>'+originalAmount+'</td><td><span class="text-success">'+donation+'</span></td></tr>';
             }
             text+='</tbody></table>';
         }
