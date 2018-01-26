@@ -150,9 +150,9 @@ class transactionMaster extends partnerMaster
                 foreach($tm as $transaction)
                 {
                     $transactionID=$transaction['idtransaction_master'];
-                    echo $transactionID;
                     $this->__construct($transactionID);
                     $transData=$this->getTransaction();
+                    echo $transData;
                     if(is_array($transData))
                     {
                         array_push($transArray,$transData);
