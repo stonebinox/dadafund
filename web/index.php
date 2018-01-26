@@ -157,7 +157,7 @@ $app->get("/transaction/getAll",function(Request $request) use($app){
     {
         require("../classes/adminMaster.php");
         require("../classes/userMaster.php");
-        requier("../classes/partnerMaster.php");
+        require("../classes/partnerMaster.php");
         require("../classes/transactionMaster.php");
         $transaction=new transactionMaster;
         $offset=0;
