@@ -177,5 +177,21 @@ $app->get("/transaction/getAll",function(Request $request) use($app){
         return "INVALID_PARAMETERS";
     }
 });
+$app->get("/transaction/getTotal",function() use($app){
+    if($app['session']->get("uid"))
+    {
+        require("../classes/adminMaster.php");
+        require("../classes/userMaster.php");
+        require("../classes/partnerMaster.php");
+        require("../classes/transactionMaster.php");
+        $transaction=new transactionMaster;
+        $total=$transaction->getTransactionTotals($app['session']->get("uid"));
+        return $total;
+    }
+    else
+    {
+        return "INVALID_PARAMETERS";
+    }
+});
 $app->run();
 ?>

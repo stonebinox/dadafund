@@ -173,5 +173,24 @@ class transactionMaster extends partnerMaster
             return "INVALID_USER_ID";
         }
     }
+    function getTransactionTotals($userID)
+    {
+        $userID=secure($userID);
+        userMaster::__construct($userID);
+        if($this->userValid)
+        {
+            $app=$this->app;
+            $tm="SELECT SUM(amount_difference) FROM transaction_master WHERE stat='1' AND user_master_iduser_master='$userID'";
+            $tm=$app['db']->fetchAssoc($tm);
+            foreach($tm as $val)
+            {
+                return $val;
+            }
+        }
+        else
+        {
+            return "INVALID_USER_ID";
+        }
+    }
 }
 ?>
