@@ -134,7 +134,7 @@ class transactionMaster extends partnerMaster
             return "INVALID_TRANSACTION_ID";
         }
     }
-    function gerTransactions($userID,$offset=0)
+    function getTransactions($userID,$offset=0)
     {
         $userID=secure($userID);
         userMaster::__construct($userID);
