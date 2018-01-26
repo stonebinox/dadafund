@@ -129,6 +129,7 @@ app.controller("account",function($scope,$http,$compile){
                 case "INVALID_PARAMETERS":
                 default:
                 if(!isNaN(response)){
+                    response=Math.round(response * 100) / 100
                     $scope.total=response;
                 }
                 else{
