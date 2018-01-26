@@ -124,7 +124,7 @@ app.controller("account",function($scope,$http,$compile){
     $scope.getTotal=function(){
         $http.get("transaction/getTotal")
         .then(function success(response){
-            response=$,trim(response.data);
+            response=$.trim(response.data);
             switch(response){
                 case "INVALID_PARAMETERS":
                 default:
